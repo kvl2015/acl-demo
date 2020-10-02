@@ -185,4 +185,19 @@ class User implements UserInterface, \Serializable
         // add $this->salt too if you don't use Bcrypt or Argon2i
         [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
+
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
+    public function getJsonRoles(): string
+    {
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return json_encode(array_unique($roles));
+    }
 }
