@@ -24,7 +24,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  *
  *
  * @Route("/admin/configuration")
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_USER')")
  *
  */
 class ConfigurationController extends AbstractController
